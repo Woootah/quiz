@@ -1,0 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/space-mono');
+@import url(https://db.onlinewebfonts.com/c/440b48c0e71d1803a24ba06df2ae32bf?family=Monument+Extended);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
