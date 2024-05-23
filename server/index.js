@@ -2,27 +2,41 @@ import dotenv from "dotenv"
 import mongoose from "mongoose"
 import express from "express"
 import Routes from "./routes/quizroutes.js"
+import cookieSession from "cookie-session"
+import passport from "passport"
+import "./passport.js"
+import cors from  "cors"
+import session from "express-session"
 
 const app = express()
 
 // * middlewares
 app.use(express.json())
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 }
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(cors({
+    credentials: true, 
+    origin: 'http://localhost:5173'
+}))
 
 // * env
 dotenv.config()
 
-const db = process.env.DB; 
-const port = process.env.PORT;
-
 // * db connect
-mongoose.connect(db)
+mongoose.connect(process.env.DB)
     .then(() => {
         console.log("CONNECTED TO DB"); 
-        app.listen(port, () => {
-            console.log("LISTENING ON PORT: ", port);
+        app.listen(process.env.PORT, () => {
+            console.log("LISTENING ON PORT: ", process.env.PORT);
         })
     })
     .catch(error => console.log("ERROR CONNECTING TO DB: ", error)); 
 
 // * routes 
-app.use('/quiz', Routes); 
+app.use('/', Routes); 
