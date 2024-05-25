@@ -2,10 +2,20 @@ import React, { useEffect, useState } from "react";
 import Footer from "./footer";
 import { IoMdClose } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const quiz = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [loggedInEmail, setLoggedInEmail] = useState("");
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(loggedInEmail){
+      navigate('/play')
+    }
+  }, [loggedInEmail])
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -15,6 +25,18 @@ const quiz = () => {
       setIsOpen(true);
     }
   }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/user", { withCredentials: true })
+      .then((res) => {
+        setLoggedInEmail(res.data.email);
+        console.log(res.data.email);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(`loggedInEmail: ${loggedInEmail}`); 
 
   const handleAuth = () => {
     window.location.href = "http://localhost:3000/auth/google";
@@ -33,7 +55,9 @@ const quiz = () => {
               onClick={() => setIsOpen(false)}
             />
             <img src="public/cat.svg" alt="sad_cat" className="w-14 mb-1" />
-            <p className="font-secondary text-xs mb-4 ">&#40; sad cat noises... &#41;</p>
+            <p className="font-secondary text-xs mb-4 ">
+              &#40; sad cat noises... &#41;
+            </p>
             <p className="font-secondary text-sm w-48">{errorMessage}</p>
           </div>
         </div>
@@ -49,7 +73,7 @@ const quiz = () => {
         className="border mt-16 bg-white w-[48vw] rounded-full py-4 cursor-pointer font-secondary easing hover:bg-cwhite hover:border-black text-sm flex justify-center items-center"
         onClick={handleAuth}
       >
-        <FcGoogle className="text-xl mr-4"/>
+        <FcGoogle className="text-xl mr-4" />
         Log in with Google
       </div>
       <Footer />

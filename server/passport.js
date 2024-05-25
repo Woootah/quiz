@@ -14,6 +14,9 @@ passport.deserializeUser((id, done) => {
     User.findById(id).then(user => {
         done(null, user); 
     })
+    .catch((error) => {
+        done(error, null)
+    })
 })
 
 passport.use(new GoogleStrategy({
