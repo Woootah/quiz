@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext} from "react";
+import { UserContext } from "../App"; 
 import Footer from "./footer";
 import { IoMdClose } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
@@ -10,9 +11,11 @@ const quiz = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loggedInEmail, setLoggedInEmail] = useState("");
   const navigate = useNavigate()
+  const { Email, setEmail } = useContext(UserContext); 
 
   useEffect(() => {
     if(loggedInEmail){
+      setEmail(loggedInEmail); 
       navigate('/play')
     }
   }, [loggedInEmail])
@@ -31,12 +34,10 @@ const quiz = () => {
       .get("http://localhost:3000/user", { withCredentials: true })
       .then((res) => {
         setLoggedInEmail(res.data.email);
-        console.log(res.data.email);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(`loggedInEmail: ${loggedInEmail}`); 
 
   const handleAuth = () => {
     window.location.href = "http://localhost:3000/auth/google";

@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
 
 const play = () => {
+    const { Email } = useContext(UserContext); 
     const navigate = useNavigate()
     const handlePlayClick = () => {
         navigate('/quiz')
     };
+
+    useEffect(() => {
+      if(!Email){
+        navigate('/')
+      }
+    }, [])
 
   return (
     <div className="bg-cwhite h-screen grid place-content-center text-center">

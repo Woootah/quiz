@@ -1,5 +1,6 @@
 import express from "express";
 import { Question } from "../models/question.js";
+import { Winner } from "../models/winner.js";
 import passport from "passport";
 import dotenv from "dotenv"
 
@@ -29,6 +30,15 @@ router.get(
     );
   }
 );
+
+router.get('/api/logout', (req, res) => {
+  req.logout((err) => {
+    if(err){
+      res.status(500).send({message: "Logout Failed", error: err}); 
+    }
+  });
+  res.redirect(process.env.CLIENT_DOMAIN); 
+})
 
 router.get("/user", (req, res) => {
   if(req.isAuthenticated()){
@@ -80,6 +90,28 @@ router.get('/questions', async (req, res) => {
   }
   catch(error){
     res.status(500).send({error})
+  }
+})
+
+router.post('/winner', async (req, res) => {
+  try{
+    const {email, score} = req.body; 
+    
+    const existingWinner = await Winner.findOne({ email, score });
+    if (existingWinner) {
+      return res.status(400).send({ message: "Winner already recorded" });
+    }
+    
+    const newWinner = new Winner({
+      email, 
+      score
+    })
+
+    const winner = await newWinner.save(); 
+    res.status(200).send(winner); 
+
+  }catch(error){
+    res.status(500).send({message: "Recording winner failed"})
   }
 })
 
