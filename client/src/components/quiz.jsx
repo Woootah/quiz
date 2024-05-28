@@ -31,7 +31,7 @@ const quiz = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/user", { withCredentials: true })
+      .get("https://chizquiz.onrender.com/user", { withCredentials: true })
       .then((res) => {
         setLoggedInEmail(res.data.email);
       })
@@ -40,7 +40,7 @@ const quiz = () => {
 
 
   const handleAuth = () => {
-    window.location.href = "http://localhost:3000/auth/google";
+    window.location.href = "https://chizquiz.onrender.com/auth/google";
   };
 
   return (

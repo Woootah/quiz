@@ -19,13 +19,13 @@ const result = () => {
     if (finalScore === 5) {
       const user = { email: Email, score: finalScore };
       axios
-        .post("http://localhost:3000/winner", user)
+        .post("https://chizquiz.onrender.com/winner", user)
         .then(() => {
           console.log("Winner Recorded");
         })
         .catch((error) => console.log(error));
     }
-    window.location.href = "http://localhost:3000/api/logout";
+    window.location.href = "https://chizquiz.onrender.com/api/logout";
   };
 
   return (

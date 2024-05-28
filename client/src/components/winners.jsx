@@ -19,7 +19,7 @@ const winners = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/winners")
+      .get("https://chizquiz.onrender.com/winners")
       .then((res) => setWinnerlist(res.data))
       .catch((err) => console.log(err));
   }, []);
