@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Play from "./components/play";
 import Game from "./components/game";
 import Result from "./components/result"; 
+import Winners from "./components/winners"; 
 import React, { useState } from "react";
 
 export const UserContext = React.createContext();
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/play" element={<Play />} />
           <Route path="/quiz" element={<Game />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/winners" element={<Winners />} />
         </Routes>
       </UserContext.Provider>
     </div>

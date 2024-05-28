@@ -4,7 +4,7 @@ import Footer from "./footer";
 import { IoMdClose } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const quiz = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -77,6 +77,7 @@ const quiz = () => {
         <FcGoogle className="text-xl mr-4" />
         Log in with Google
       </div>
+      <Link to='/winners' className="font-secondary mt-8 text-[13px] text-cred underline">Recent Winners</Link>
       <Footer />
     </div>
   );

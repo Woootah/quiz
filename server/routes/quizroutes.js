@@ -115,4 +115,16 @@ router.post('/winner', async (req, res) => {
   }
 })
 
+router.get('/winners', async (req, res) => {
+  try{
+    const winner = await Winner.find(); 
+    if(winner){
+      res.status(200).send(winner); 
+    }  
+  }
+  catch(err){
+    res.status(500).send({message: "Fetch Failed"})
+  }
+})
+
 export default router;
