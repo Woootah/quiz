@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "npm index.js", 
+    "dev": "node index.js", 
     "build" : "npm i"
   },
   "author": "",
