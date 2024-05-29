@@ -11,14 +11,7 @@ const quiz = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loggedInEmail, setLoggedInEmail] = useState("");
   const navigate = useNavigate()
-  const { Email, setEmail } = useContext(UserContext); 
-
-  useEffect(() => {
-    if(loggedInEmail){
-      setEmail(loggedInEmail); 
-      navigate('/play')
-    }
-  }, [loggedInEmail])
+  const { Email } = useContext(UserContext); 
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -29,18 +22,8 @@ const quiz = () => {
     }
   }, []);
 
-  useEffect(() => {
-    axios
-      .get("https://chizquiz.onrender.com/user", { withCredentials: true })
-      .then((res) => {
-        setLoggedInEmail(res.data.email);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-
   const handleAuth = () => {
-    window.location.href = "https://chizquiz.onrender.com/auth/google";
+    window.location.href = "http://localhost:3000/auth/google";
   };
 
   return (

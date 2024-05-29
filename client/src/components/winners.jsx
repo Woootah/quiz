@@ -19,17 +19,17 @@ const winners = () => {
 
   useEffect(() => {
     axios
-      .get("https://chizquiz.onrender.com/winners")
+      .get("http://localhost:3000/winners")
       .then((res) => setWinnerlist(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className="bg-cwhite h-screen w-full grid place-content-center text-center">
+      <h1 className="font-primary text-4xl text-cred mb-8">Winners &#127881;</h1>
       {winnerList.length > 0 ? (
         <div>
-          <h1 className="font-primary text-4xl text-cred">Winners &#127881;</h1>
-          <div className="w-[60vw] mt-8">
+          <div className="w-[60vw] mt-4">
             {winnerList.map((winner) => (
                 <div key={winner._id} className="font-secondary border-2 border-cred bg-cred text-cwhite py-3 px-4 text-center cursor-pointer mt-4 easing hover:bg-cwhite hover:text-cred">
                     <p className="font-semibold">{winner.email}</p>

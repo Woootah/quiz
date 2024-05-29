@@ -25,6 +25,11 @@ router.get(
         `${process.env.CLIENT_DOMAIN}/?message=You can only play once per email`
       );
     }
+
+    if(req.isAuthenticated() && req.user.email){
+      return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
+    }
+
     res.redirect(
       `${process.env.CLIENT_DOMAIN}`
     );

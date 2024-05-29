@@ -20,7 +20,7 @@ const game = () => {
 
   useEffect(() => {
     axios
-      .get("https://chizquiz.onrender.com/questions")
+      .get("http://localhost:3000/questions")
       .then((res) => {
         const loadedQuestions = res.data; 
         loadedQuestions.forEach((question) => {
