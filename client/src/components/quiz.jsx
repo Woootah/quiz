@@ -50,11 +50,11 @@ const quiz = () => {
         <span>Chiz</span>
         <span>Quiz</span>
       </h1>
-      <p className="text-sm font-secondary mt-5 w-[48vw] text-gray-700 cursor-pointer">
+      <p className="text-sm font-secondary mt-5 w-[60vw] text-gray-700 cursor-pointer">
         Discover, Learn, Conquer, &amp; Win Prizes!
       </p>
       <div
-        className="border mt-16 bg-white w-[48vw] rounded-full py-4 cursor-pointer font-secondary easing hover:bg-cwhite hover:border-black text-sm flex justify-center items-center"
+        className="border mt-16 bg-white w-[60vw] rounded-full py-3 px-4 cursor-pointer font-secondary easing hover:bg-cwhite hover:border-black text-sm flex justify-center items-center"
         onClick={handleAuth}
       >
         <FcGoogle className="text-xl mr-4" />
