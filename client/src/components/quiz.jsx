@@ -53,13 +53,13 @@ const quiz = () => {
       <p className="text-sm font-secondary mt-5 w-[60vw] text-gray-700 cursor-pointer">
         Discover, Learn, Conquer, &amp; Win Prizes!
       </p>
-      <div
+      <button
         className="border mt-16 bg-white w-[60vw] rounded-full py-3 px-4 cursor-pointer font-secondary easing hover:bg-cwhite hover:border-black text-sm flex justify-center items-center"
         onClick={handleAuth}
       >
         <FcGoogle className="text-xl mr-4" />
         Log in with Google
-      </div>
+      </button>
       <Link to='/winners' className="font-secondary mt-8 text-[13px] text-cred underline">Recent Winners</Link>
       <Footer />
     </div>
