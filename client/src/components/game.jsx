@@ -20,7 +20,7 @@ const game = () => {
 
   useEffect(() => {
     axios
-      .get("https://chizquiz.onrender.com/questions")
+      .get("https://chizquiz-be.vercel.app/questions")
       .then((res) => {
         const loadedQuestions = res.data; 
         loadedQuestions.forEach((question) => {

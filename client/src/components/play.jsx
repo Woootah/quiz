@@ -16,7 +16,7 @@ const play = () => {
   
   useEffect(() => {
     axios
-      .get("https://chizquiz.onrender.com/user", { withCredentials: true })
+      .get("https://chizquiz-be.vercel.app/user", { withCredentials: true })
       .then((res) => {
         setEmail(res.data.email);
         console.log(res.data.email); 

@@ -23,7 +23,7 @@ const quiz = () => {
   }, []);
 
   const handleAuth = () => {
-    window.location.href = "https://chizquiz.onrender.com/auth/google";
+    window.location.href = "https://chizquiz-be.vercel.app/auth/google";
   };
 
   return (

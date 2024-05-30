@@ -19,7 +19,7 @@ const winners = () => {
 
   useEffect(() => {
     axios
-      .get("https://chizquiz.onrender.com/winners")
+      .get("https://chizquiz-be.vercel.app/winners")
       .then((res) => setWinnerlist(res.data))
       .catch((err) => console.log(err));
   }, []);
