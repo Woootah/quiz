@@ -7,6 +7,10 @@ import dotenv from "dotenv"
 dotenv.config()
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.status(200).send("Hello ChizQuizzer"); 
+})
+
 // * Google Authentication
 router.get(
   "/auth/google",
