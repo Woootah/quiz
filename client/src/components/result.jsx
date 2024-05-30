@@ -36,7 +36,7 @@ const result = () => {
             Congratulations!
           </p>
           <img
-            src="/public/congrats_fin.png"
+            src="congrats_fin.png"
             alt="congrats"
             className="w-80 mx-auto"
           />
@@ -50,7 +50,7 @@ const result = () => {
             AWIT :&#40;
           </p>
           <img
-            src="/public/sadded_fin.png"
+            src="sadded_fin.png"
             alt="congrats"
             className="w-72 mx-auto"
           />
