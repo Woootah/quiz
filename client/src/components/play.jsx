@@ -16,7 +16,7 @@ const play = () => {
   
   useEffect(() => {
     axios
-      .get("http://localhost:3000/user", { withCredentials: true })
+      .get("https://chizquiz.onrender.com/user", { withCredentials: true })
       .then((res) => {
         setEmail(res.data.email);
         setIsSet(true); 

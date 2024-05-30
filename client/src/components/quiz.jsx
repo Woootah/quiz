@@ -23,7 +23,7 @@ const quiz = () => {
   }, []);
 
   const handleAuth = () => {
-    window.location.href = "http://localhost:3000/auth/google";
+    window.location.href = "https://chizquiz.onrender.com/auth/google";
   };
 
   return (
