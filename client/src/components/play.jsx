@@ -21,14 +21,14 @@ const play = () => {
         setEmail(res.data.email);
         setIsSet(true); 
 
-        if(!res.data.email){
-          console.log('Email is empty!'); 
-          navigate('/')
-        }
+        // if(!res.data.email){
+        //   console.log('Email is empty!'); 
+        //   navigate('/')
+        // }
       })
       .catch((err) => {
         console.log(err); 
-        navigate('/'); 
+        // navigate('/'); 
       });
   }, []);
 
