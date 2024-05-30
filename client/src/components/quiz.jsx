@@ -38,7 +38,7 @@ const quiz = () => {
               className="absolute right-3 top-3 text-2xl"
               onClick={() => setIsOpen(false)}
             />
-            <img src="public/cat.svg" alt="sad_cat" className="w-14 mb-1" />
+            <img src="dist/cat.svg" alt="sad_cat" className="w-14 mb-1" />
             <p className="font-secondary text-xs mb-4 ">
               &#40; sad cat noises... &#41;
             </p>
