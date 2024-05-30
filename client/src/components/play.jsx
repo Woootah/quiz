@@ -19,6 +19,7 @@ const play = () => {
       .get("https://chizquiz.onrender.com/user", { withCredentials: true })
       .then((res) => {
         setEmail(res.data.email);
+        console.log(res.data.email); 
         setIsSet(true); 
 
         // if(!res.data.email){
