@@ -29,7 +29,7 @@ const winners = () => {
       <h1 className="font-primary text-4xl text-cred mb-8">Winners &#127881;</h1>
       {winnerList.length > 0 ? (
         <div>
-          <div className="h-[65vh] w-[75vw] mt-4 overflow-auto overflow-x-hidden">
+          <div className="h-[65vh] w-full mt-4 overflow-auto overflow-x-hidden">
             {winnerList.map((winner) => (
                 <div key={winner._id} className="font-secondary border-2 border-cred bg-cred text-cwhite py-3 px-4 text-center text-sm cursor-pointer mb-4 mx-4 easing hover:bg-cwhite hover:text-cred">
                     <p className="font-semibold">{winner.email}</p>
