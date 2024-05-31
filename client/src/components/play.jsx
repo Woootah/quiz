@@ -3,7 +3,7 @@ import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import axios from "axios" ;
-import { server } from "../config"; 
+import { server } from "../config.js"; 
 
 const play = () => {
   const [loggedInEmail, setLoggedInEmail] = useState("");

@@ -3,7 +3,7 @@ import axios from "axios";
 import Footer from "./footer";
 import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
-import { server } from "../config"; 
+import { server } from "../config.js"; 
 
 const game = () => {
   const [questions, setQuestions] = useState([]);

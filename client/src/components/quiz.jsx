@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { server } from "../config";  
+import { server } from "../config.js";  
 
 const quiz = () => {
   const [errorMessage, setErrorMessage] = useState("");

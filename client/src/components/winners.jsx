@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./footer";
-import { server } from "../config"; 
+import { server } from "../config.js"; 
 
 const formatDate = (isoDate) => {
     const date = new Date(isoDate);
