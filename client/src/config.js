@@ -1,0 +1,1 @@
+export default server = 'https://chizquiz.vercel.app'; 

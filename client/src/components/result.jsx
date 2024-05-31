@@ -3,6 +3,7 @@ import { UserContext } from "../App";
 import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { server } from "../config"; 
 
 const result = () => {
   const { finalScore, Email } = useContext(UserContext);
@@ -19,13 +20,13 @@ const result = () => {
     if (finalScore === 5) {
       const user = { email: Email, score: finalScore };
       axios
-        .post("https://chizquiz-be.vercel.app/winner", user)
+        .post(`${server}/winner`, user)
         .then(() => {
           console.log("Winner Recorded");
         })
         .catch((error) => console.log(error));
     }
-    window.location.href = "https://chizquiz-be.vercel.app/api/logout";
+    window.location.href = `${server}/api/logout`;
   };
 
   return (

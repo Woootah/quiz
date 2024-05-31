@@ -5,6 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { server } from "../config";  
 
 const quiz = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,7 +24,7 @@ const quiz = () => {
   }, []);
 
   const handleAuth = () => {
-    window.location.href = "https://chizquiz-be.vercel.app/auth/google";
+    window.location.href = `${server}/auth/google`;
   };
 
   return (

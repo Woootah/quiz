@@ -3,6 +3,7 @@ import axios from "axios";
 import Footer from "./footer";
 import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import { server } from "../config"; 
 
 const game = () => {
   const [questions, setQuestions] = useState([]);
@@ -20,7 +21,7 @@ const game = () => {
 
   useEffect(() => {
     axios
-      .get("https://chizquiz-be.vercel.app/questions")
+      .get(`${server}/questions`)
       .then((res) => {
         const loadedQuestions = res.data; 
         loadedQuestions.forEach((question) => {

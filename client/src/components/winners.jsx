@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./footer";
+import { server } from "../config"; 
 
 const formatDate = (isoDate) => {
     const date = new Date(isoDate);
@@ -19,7 +20,7 @@ const winners = () => {
 
   useEffect(() => {
     axios
-      .get("https://chizquiz-be.vercel.app/winners")
+      .get(`${server}/winners`)
       .then((res) => setWinnerlist(res.data))
       .catch((err) => console.log(err));
   }, []);

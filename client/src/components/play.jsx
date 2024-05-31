@@ -3,6 +3,7 @@ import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import axios from "axios" ;
+import { server } from "../config"; 
 
 const play = () => {
   const [loggedInEmail, setLoggedInEmail] = useState("");
@@ -16,7 +17,7 @@ const play = () => {
   
   useEffect(() => {
     axios
-      .get("https://chizquiz-be.vercel.app/user", { withCredentials: true })
+      .get(`${server}/user`, { withCredentials: true })
       .then((res) => {
         setEmail(res.data.email);
         console.log(res.data.email); 
