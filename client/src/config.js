@@ -1,1 +1,1 @@
-export default server = 'https://chizquiz.vercel.app'; 
+export const server = 'https://chizquiz.vercel.app'; 
