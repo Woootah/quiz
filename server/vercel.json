@@ -1,11 +1,5 @@
 {
-  "version": 2,
-  "builds": [{ "src": "*.js", "use": "@vercel/node" }],
-  "routes": [
-    {"src": "/", "dest": "/"}, 
-    {"src": "/play", "dest": "/"}, 
-    {"src": "/quiz", "dest": "/"}, 
-    {"src": "/result", "dest": "/"}, 
-    {"src": "/winners", "dest": "/"}
-  ]
+  "rewrites": [
+    {"source": "/(.*)", "destination": "/"}
+  ] 
 }
