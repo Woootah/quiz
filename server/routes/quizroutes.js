@@ -31,9 +31,11 @@ router.get(
     }
 
     if(req.isAuthenticated() && req.user.email){
+      console.log("User authenticated and has email")
       return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
     }
 
+    console.log("Redirecting to home")
     res.redirect(
       `${process.env.CLIENT_DOMAIN}`
     );
@@ -51,12 +53,14 @@ router.get('/api/logout', (req, res) => {
 
 router.get("/user", (req, res) => {
   if(req.isAuthenticated()){
+    console.log("User is authenticated", res.user)
     res.json({
       email: req.user.email,
       displayName: req.user.displayName
     })
   }
   else {
+    console.log("User not authenticated")
     res.status(401).send({message: "Not Authenticated"})
   }
 })
