@@ -17,8 +17,12 @@ app.use(express.json())
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 }
+    saveUninitialized: true, 
+    cookie: { 
+        maxAge: 1000 * 60 * 60, 
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax', 
+    }
 }))
 app.use(passport.initialize())
 app.use(passport.session())
