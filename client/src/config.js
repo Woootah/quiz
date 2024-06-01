@@ -1,2 +1,2 @@
-export const server = 'https://chizquiz-api.vercel.app'; 
+export const server = 'https://chizquiz.onrender.com'; 
 console.log(server); 
