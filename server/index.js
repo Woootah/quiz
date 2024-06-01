@@ -9,6 +9,9 @@ import session from "express-session"
 
 const app = express()
 
+// * env
+dotenv.config()
+
 // * middlewares
 app.use(express.json())
 app.use(session({
@@ -19,10 +22,13 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(cors()); 
+app.use(cors({
+    origin: process.env.CLIENT_DOMAIN, 
+    credentials: true, 
+    methods: ['POST', 'GET']
+})); 
 
-// * env
-dotenv.config()
+
 
 // * db connect
 mongoose.connect(process.env.DB)
