@@ -19,11 +19,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(cors({
-    credentials: true, 
-    origin: `${process.env.CLIENT_DOMAIN}`,     
-    methods: ['POST', 'GET']
-}))
+app.use(cors()); 
 
 // * env
 dotenv.config()
