@@ -52,6 +52,9 @@ router.get('/api/logout', (req, res) => {
 })
 
 router.get("/user", (req, res) => {
+  console.log("Checking user authentication");
+  console.log("req.isAuthenticated():", req.isAuthenticated());
+  console.log("req.user:", req.user);
   if(req.isAuthenticated()){
     console.log("User is authenticated", res.user)
     res.json({
