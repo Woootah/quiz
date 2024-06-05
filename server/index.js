@@ -26,11 +26,10 @@ app.use(session({
     saveUninitialized: true, 
     cookie: { 
         maxAge: 1000 * 60 * 60, 
-        secure: true,
-        sameSite: 'None', 
+        secure: true
     }, 
     store: MongoStore.create({
-        client: mongoose.connection.getClient()
+        mongoUrl: process.env.DB
     })
 }))
 app.use(passport.initialize())
