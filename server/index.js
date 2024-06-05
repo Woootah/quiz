@@ -6,6 +6,7 @@ import passport from "passport"
 import "./passport.js"
 import cors from  "cors"
 import session from "express-session"
+import MongoStore from "connect-mongo"
 
 const app = express()
 
@@ -13,6 +14,11 @@ const app = express()
 dotenv.config()
 
 // * middlewares
+app.use(cors({
+    origin: process.env.CLIENT_DOMAIN, 
+    credentials: true, 
+    methods: ['POST', 'GET']
+})); 
 app.use(express.json())
 app.use(session({
     secret: process.env.COOKIE_SECRET,
@@ -22,15 +28,13 @@ app.use(session({
         maxAge: 1000 * 60 * 60, 
         secure: true,
         sameSite: 'None', 
-    }
+    }, 
+    store: MongoStore.create({
+        client: mongoose.connection.getClient()
+    })
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(cors({
-    origin: process.env.CLIENT_DOMAIN, 
-    credentials: true, 
-    methods: ['POST', 'GET']
-})); 
 
 
 
