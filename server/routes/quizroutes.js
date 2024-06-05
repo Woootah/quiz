@@ -31,7 +31,7 @@ router.get(
     }
 
     if(req.isAuthenticated() && req.user.email){
-      console.log("User authenticated and has email")
+      console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
       return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
     }
 
@@ -52,11 +52,8 @@ router.get('/api/logout', (req, res) => {
 })
 
 router.get("/user", (req, res) => {
-  console.log("Checking user authentication");
-  console.log("req.isAuthenticated():", req.isAuthenticated());
-  console.log("req.user:", req.user);
+  console.log("REQ IS AUTHENTICATED: /USER", req.isAuthenticated());
   if(req.isAuthenticated()){
-    console.log("User is authenticated", req.user)
     res.json({
       email: req.user.email,
       displayName: req.user.displayName
