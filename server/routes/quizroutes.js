@@ -31,8 +31,11 @@ router.get(
     }
 
     if(req.isAuthenticated() && req.user.email){
-      console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
-      return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
+      console.log(req.session); 
+      req.session.save(() => {
+        console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
+        return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
+      })
     }
 
     console.log("Redirecting to home")
@@ -52,6 +55,7 @@ router.get('/api/logout', (req, res) => {
 })
 
 router.get("/user", (req, res) => {
+  console.log(req.session); 
   console.log("REQ IS AUTHENTICATED: /USER", req.isAuthenticated());
   if(req.isAuthenticated()){
     res.json({

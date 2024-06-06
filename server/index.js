@@ -21,7 +21,7 @@ app.use(session({
     saveUninitialized: false, 
     cookie: { 
         maxAge: 1000 * 60 * 60, 
-        secure: true,
+        secure: false,
         httpOnly: false, 
     }, 
     store: MongoStore.create({
