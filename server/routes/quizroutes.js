@@ -34,7 +34,7 @@ router.get(
       console.log(req.session); 
       req.session.save(() => {
         console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
-        return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
+        res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
       })
     }
 
