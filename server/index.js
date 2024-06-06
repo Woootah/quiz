@@ -14,12 +14,7 @@ const app = express()
 dotenv.config()
 
 // * middlewares
-app.use(cors({
-    origin: process.env.CLIENT_DOMAIN, 
-    credentials: true, 
-    methods: ['POST', 'GET']
-})); 
-app.use(express.json())
+app.set('trust proxy', 1); 
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
@@ -35,6 +30,20 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use((req, res, next) => {
+    res.append("Access-Control-Allow-Origin", ["*"]);
+    res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.append(
+      "Access-Control-Allow-Headers",
+      "Content-Type,Origin,Accept,Authorization"
+    );
+    next();
+  });
+app.use(cors({
+    credentials: true, 
+    origin: process.env.CLIENT_DOMAIN, 
+})); 
+app.use(express.json())
 
 
 
