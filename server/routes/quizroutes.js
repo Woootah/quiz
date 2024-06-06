@@ -33,11 +33,11 @@ router.get(
     if(req.isAuthenticated() && req.user.email){
       console.log(req.session); 
       console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
-      res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
+      return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
     }
 
     console.log("Redirecting to home")
-    res.redirect(
+    return res.redirect(
       `${process.env.CLIENT_DOMAIN}`
     );
   }

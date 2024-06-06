@@ -17,8 +17,8 @@ dotenv.config()
 app.set('trust proxy', 1); 
 app.use(session({
     secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false, 
+    resave: true,
+    saveUninitialized: true, 
     cookie: { 
         maxAge: 1000 * 60 * 60, 
         secure: false,
