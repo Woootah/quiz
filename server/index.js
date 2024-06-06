@@ -17,8 +17,8 @@ dotenv.config()
 app.set('trust proxy', 1); 
 app.use(session({
     secret: process.env.COOKIE_SECRET,
-    resave: true,
-    saveUninitialized: true, 
+    resave: false,
+    saveUninitialized: false, 
     cookie: { 
         maxAge: 1000 * 60 * 60, 
         secure: false,
@@ -30,15 +30,6 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use((req, res, next) => {
-    res.append("Access-Control-Allow-Origin", ["*"]);
-    res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-    res.append(
-      "Access-Control-Allow-Headers",
-      "Content-Type,Origin,Accept,Authorization"
-    );
-    next();
-  });
 app.use(cors({
     credentials: true, 
     origin: process.env.CLIENT_DOMAIN, 
