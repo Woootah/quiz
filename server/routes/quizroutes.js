@@ -32,10 +32,8 @@ router.get(
 
     if(req.isAuthenticated() && req.user.email){
       console.log(req.session); 
-      req.session.save(() => {
-        console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
-        res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
-      })
+      console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
+      res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
     }
 
     console.log("Redirecting to home")
