@@ -24,6 +24,7 @@ router.get(
       `${process.env.CLIENT_DOMAIN}/?message=You can only play once per email`,
   }),
   (req, res) => {
+    console.log('Session ID in callback:', req.sessionID);
     if (req.authInfo && req.authInfo.message == "Already Played") {
       return res.redirect(
         `${process.env.CLIENT_DOMAIN}/?message=You can only play once per email`
@@ -31,7 +32,6 @@ router.get(
     }
 
     if(req.isAuthenticated() && req.user.email){
-      console.log('Session ID in callback:', req.sessionID);
       console.log(req.session); 
       console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
       return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
