@@ -1,52 +1,62 @@
-import dotenv from "dotenv"
-import mongoose from "mongoose"
-import express from "express"
-import Routes from "./routes/quizroutes.js"
-import passport from "passport"
-import "./passport.js"
-import cors from  "cors"
-import session from "express-session"
-import MongoStore from "connect-mongo"
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import express from "express";
+import Routes from "./routes/quizroutes.js";
+import passport from "passport";
+import "./passport.js";
+import cors from "cors";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 
-const app = express()
+const app = express();
 
 // * env
-dotenv.config()
+dotenv.config();
 
 // * middlewares
-app.set('trust proxy', 1); 
-app.use(session({
+app.set("trust proxy", 1);
+app.use(
+  session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
-    saveUninitialized: false, 
-    cookie: { 
-        maxAge: 1000 * 60 * 60, 
-        secure: true,
-        httpOnly: true, 
-        sameSite: 'None',
-    }, 
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60,
+      secure: true,
+      httpOnly: true,
+      sameSite: "None",
+    },
     store: MongoStore.create({
-        mongoUrl: process.env.DB
-    })
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(cors({
-    origin: process.env.CLIENT_DOMAIN, 
-    credentials: true, 
-})); 
-app.use(express.json())
-
+      mongoUrl: process.env.DB,
+    }),
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(
+  cors({
+    origin: process.env.CLIENT_DOMAIN,
+    credentials: true,
+  })
+);
+app.use(express.json());
 
 // * db connect
-mongoose.connect(process.env.DB)
-    .then(() => {
-        console.log("CONNECTED TO DB"); 
-        app.listen(process.env.PORT, () => {
-            console.log("LISTENING ON PORT: ", process.env.PORT);
-        })
-    })
-    .catch(error => console.log("ERROR CONNECTING TO DB: ", error)); 
+mongoose
+  .connect(process.env.DB)
+  .then(() => {
+    console.log("CONNECTED TO DB");
+    app.listen(process.env.PORT, () => {
+      console.log("LISTENING ON PORT: ", process.env.PORT);
+    });
+  })
+  .catch((error) => console.log("ERROR CONNECTING TO DB: ", error));
 
-// * routes 
-app.use('/', Routes); 
+app.use((req, res, next) => {
+  console.log("Session ID:", req.sessionID);
+  console.log("User:", req.user);
+  next();
+});
+
+// * routes
+app.use("/", Routes);
