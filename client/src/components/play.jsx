@@ -17,7 +17,7 @@ const play = () => {
   
   useEffect(() => {
     axios
-      .get(`${server}/user`, { withCredentials: true })
+      .get(`${server}/user`, {withCredentials: true})
       .then((res) => {
         setEmail(res.data.email);
         console.log(res.data.email); 
