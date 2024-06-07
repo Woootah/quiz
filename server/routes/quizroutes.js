@@ -31,6 +31,7 @@ router.get(
     }
 
     if(req.isAuthenticated() && req.user.email){
+      console.log('Session ID in callback:', req.sessionID);
       console.log(req.session); 
       console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
       return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
@@ -54,6 +55,7 @@ router.get('/api/logout', (req, res) => {
 
 router.get("/user", (req, res) => {
   console.log(req.session); 
+  console.log('Session ID in user route:', req.sessionID);
   console.log("REQ IS AUTHENTICATED: /USER", req.isAuthenticated());
   if(req.isAuthenticated()){
     res.json({

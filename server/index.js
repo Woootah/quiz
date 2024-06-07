@@ -21,8 +21,9 @@ app.use(session({
     saveUninitialized: false, 
     cookie: { 
         maxAge: 1000 * 60 * 60, 
-        secure: false,
+        secure: true,
         httpOnly: false, 
+        sameSite: 'None',
     }, 
     store: MongoStore.create({
         mongoUrl: process.env.DB
@@ -31,8 +32,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(cors({
-    credentials: true, 
     origin: process.env.CLIENT_DOMAIN, 
+    credentials: true, 
 })); 
 app.use(express.json())
 
