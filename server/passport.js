@@ -7,10 +7,12 @@ import dotenv from "dotenv";
 dotenv.config()
 
 passport.serializeUser((user, done) => {
+    console.log('Inside serializer'); 
     done(null, user.id)
-})
-
-passport.deserializeUser((id, done) => {
+    })
+    
+    passport.deserializeUser((id, done) => {
+    console.log('Inside deserializer'); 
     User.findById(id).then(user => {
         if(!user){
             done(null, false); 
