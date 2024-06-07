@@ -38,7 +38,6 @@ app.use(cors({
 app.use(express.json())
 
 
-
 // * db connect
 mongoose.connect(process.env.DB)
     .then(() => {

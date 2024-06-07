@@ -44,6 +44,12 @@ router.get(
   }
 );
 
+app.use((req, res, next) => {
+  console.log('Session ID:', req.sessionID);
+  console.log('User:', req.user);
+  next();
+});
+
 router.get('/api/logout', (req, res) => {
   req.logout((err) => {
     if(err){
