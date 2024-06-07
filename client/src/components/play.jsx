@@ -34,6 +34,8 @@ const play = () => {
       });
   }, []);
 
+  fetch(`${server}/user`)
+
 
   return (
     <div className="bg-cwhite h-screen grid place-content-center text-center">

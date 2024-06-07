@@ -58,7 +58,7 @@ router.get("/user", (req, res) => {
   console.log('Session ID in user route:', req.sessionID);
   console.log("REQ IS AUTHENTICATED: /USER", req.isAuthenticated());
   if(req.isAuthenticated()){
-    res.json({
+    return res.json({
       email: req.user.email,
       displayName: req.user.displayName
     })

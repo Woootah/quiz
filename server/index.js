@@ -5,7 +5,8 @@ import Routes from "./routes/quizroutes.js"
 import passport from "passport"
 import "./passport.js"
 import cors from  "cors"
-import session from "express-session"
+// import session from "express-session"
+import cookieSession from "cookie-session"
 import MongoStore from "connect-mongo"
 
 const app = express()
@@ -15,19 +16,23 @@ dotenv.config()
 
 // * middlewares
 app.set('trust proxy', 1); 
-app.use(session({
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false, 
-    cookie: { 
-        maxAge: 1000 * 60 * 60, 
-        secure: true,
-        httpOnly: true, 
-        sameSite: 'None',
-    }, 
-    store: MongoStore.create({
-        mongoUrl: process.env.DB
-    })
+// app.use(session({
+//     secret: process.env.COOKIE_SECRET,
+//     resave: false,
+//     saveUninitialized: false, 
+//     cookie: { 
+//         maxAge: 1000 * 60 * 60, 
+//         secure: true,
+//         httpOnly: true, 
+//         sameSite: 'None',
+//     }, 
+//     store: MongoStore.create({
+//         mongoUrl: process.env.DB
+//     })
+// }))
+app.use(cookieSession({
+    maxAge: 1000 * 60 * 60, 
+    keys: [process.env.COOKIE_SECRET]
 }))
 app.use(passport.initialize())
 app.use(passport.session())
