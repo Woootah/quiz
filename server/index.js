@@ -5,6 +5,7 @@ import Routes from "./routes/quizroutes.js";
 import passport from "passport";
 import "./passport.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 
@@ -15,6 +16,7 @@ dotenv.config();
 
 // * middlewares
 app.set("trust proxy", 1);
+app.use(cookieParser(process.env.COOKIE_SECRET)); 
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,

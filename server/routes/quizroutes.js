@@ -44,6 +44,7 @@ router.get(
   }
 );
 
+//
 
 router.get('/api/logout', (req, res) => {
   req.logout((err) => {
