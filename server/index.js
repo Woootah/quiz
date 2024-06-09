@@ -17,6 +17,7 @@ dotenv.config();
 // * middlewares
 app.set("trust proxy", 1);
 app.use(cookieParser(process.env.COOKIE_SECRET)); 
+app.use(express.json());
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
@@ -24,15 +25,13 @@ app.use(
     saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60,
-      secure: true,
-      httpOnly: true,
-      sameSite: "None",
     },
     store: MongoStore.create({
       mongoUrl: process.env.DB,
     }),
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(
@@ -41,7 +40,6 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
 
 // * db connect
 mongoose

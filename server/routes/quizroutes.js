@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 // * Google Authentication
 router.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  passport.authenticate("google")
 );
 
 router.get(

@@ -13,6 +13,7 @@ passport.deserializeUser((id, done) => {
   User.findById(id)
     .then((user) => {
       if (!user) {
+        console.log('USER NOT FOUND')
         done(null, false);
       }
 
@@ -29,12 +30,13 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
+      scope: ["email", "profile"]
     },
     (token, tokenSecret, profile, done) => {
       User.findOne({ googleId: profile.id })
         .then((user_exist) => {
           if (user_exist) {
-            return done(null, false, { message: "Already Played" });
+            return done(null, user_exist, { message: "Already Played" });
           }
 
           const user = new User({
