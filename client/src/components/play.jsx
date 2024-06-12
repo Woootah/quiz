@@ -15,26 +15,24 @@ const play = () => {
     navigate("/quiz");
   };
   
-  useEffect(() => {
-    axios
-      .get(`${server}/user`, {withCredentials: true})
-      .then((res) => {
-        setEmail(res.data.email);
-        console.log(res.data.email); 
-        setIsSet(true); 
+  // useEffect(() => {
+  //   axios
+  //     .get(`${server}/user`, {withCredentials: true})
+  //     .then((res) => {
+  //       setEmail(res.data.email);
+  //       console.log(res.data.email); 
+  //       setIsSet(true); 
 
-        if(!res.data.email){
-          console.log('Email is empty!'); 
-          navigate('/')
-        }
-      })
-      .catch((err) => {
-        console.log(err); 
-        navigate('/'); 
-      });
-  }, []);
-
-  fetch(`${server}/user`)
+  //       if(!res.data.email){
+  //         console.log('Email is empty!'); 
+  //         navigate('/')
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err); 
+  //       navigate('/'); 
+  //     });
+  // }, []);
 
 
   return (

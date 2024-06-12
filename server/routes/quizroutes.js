@@ -11,64 +11,20 @@ router.get("/", (req, res) => {
   res.status(200).send("Hello ChizQuizzer"); 
 })
 
-// * Google Authentication
-router.get(
-  "/auth/google",
-  passport.authenticate("google")
-);
+// Auth
+router.get('/auth/google', passport.authenticate('google')); 
 
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect:
-      `${process.env.CLIENT_DOMAIN}/?message=You can only play once per email`,
-  }),
-  (req, res) => {
-    console.log('Session ID in callback:', req.sessionID);
-    if (req.authInfo && req.authInfo.message == "Already Played") {
-      return res.redirect(
-        `${process.env.CLIENT_DOMAIN}/?message=You can only play once per email`
-      );
-    }
-
-    if(req.isAuthenticated() && req.user.email){
-      console.log(req.session); 
-      console.log("REQ IS AUTHENTICATED: /CALLBACK", req.isAuthenticated());
-      return res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
-    }
-
-    console.log("Redirecting to home")
-    return res.redirect(
-      `${process.env.CLIENT_DOMAIN}`
-    );
-  }
-);
-
-//
-
-router.get('/api/logout', (req, res) => {
-  req.logout((err) => {
-    if(err){
-      res.status(500).send({message: "Logout Failed", error: err}); 
-    }
-  });
-  res.redirect(process.env.CLIENT_DOMAIN); 
-})
-
-router.get("/user", (req, res) => {
-  console.log(req.session); 
-  console.log('Session ID in user route:', req.sessionID);
-  console.log("REQ IS AUTHENTICATED: /USER", req.isAuthenticated());
+router.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
   if(req.isAuthenticated()){
-    return res.json({
-      email: req.user.email,
-      displayName: req.user.displayName
-    })
+    res.sendStatus(200); 
+    console.log(req.session); 
+    console.log(req.user); 
+    // res.redirect(`${process.env.CLIENT_DOMAIN}/play`); 
   }
-  else {
-    console.log("User not authenticated")
-    res.status(401).send({message: "Not Authenticated"})
-  }
+} )
+
+router.get('/status', (req, res) => {
+  return req.user ? res.send(req.user) : res.sendStatus(401); 
 })
 
 // * create questions
