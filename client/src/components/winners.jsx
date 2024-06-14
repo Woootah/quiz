@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./footer";
 import { server } from "../config.js"; 
+import { IoArrowBackSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const formatDate = (isoDate) => {
     const date = new Date(isoDate);
@@ -17,6 +19,7 @@ const formatDate = (isoDate) => {
 
 const winners = () => {
   const [winnerList, setWinnerlist] = useState([]);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     axios
@@ -25,8 +28,13 @@ const winners = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleBack = () => {
+    navigate('/'); 
+  }
+
   return (
     <div className="bg-cwhite h-screen w-full grid place-content-center text-center">
+      <IoArrowBackSharp className="absolute top-4 left-4 text-3xl cursor-pointer" onClick={handleBack}/>
       <h1 className="font-primary text-4xl text-cred mb-8">Winners &#127881;</h1>
       {winnerList.length > 0 ? (
         <div>

@@ -14,6 +14,7 @@ const app = express();
 dotenv.config();
 
 // * middlewares
+app.use(express.json());
 app.use(session({
   secret: process.env.COOKIE_SECRET, 
   saveUninitialized: true, 

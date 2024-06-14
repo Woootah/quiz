@@ -17,16 +17,20 @@ const result = () => {
   }, []);
 
   const handleBounce = () => {
-    if (finalScore === 5) {
+    if (finalScore === 5 && !hasSubmitted.current) {
       const user = { email: Email, score: finalScore };
+      hasSubmitted.current = true; 
       axios
-        .post(`${server}/winner`, user)
-        .then(() => {
-          console.log("Winner Recorded");
+      .post(`${server}/winner`, user)
+      .then(() => {
+        console.log("Winner Recorded");
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error); 
+          hasSubmitted.current = false; 
+        });
     }
-    window.location.href = `${server}/api/logout`;
+    window.location.href = `${server}/logout`;
   };
 
   return (
@@ -42,7 +46,7 @@ const result = () => {
             className="w-80 mx-auto"
           />
           <p className="font-secondary text-xs">
-            Claim your price from the seller
+            Claim your prize from the seller
           </p>
         </div>
       ) : (
