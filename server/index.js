@@ -29,12 +29,22 @@ app.use(session({
 }))
 app.use(passport.initialize()); 
 app.use(passport.session()); 
-app.use(
-  cors({
-    origin: process.env.CLIENT_DOMAIN,
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: process.env.CLIENT_DOMAIN,
+//     credentials: true,
+//   })
+// );
+const allowedOrigins = ['https://quiz-zeta-ten.vercel.app', 'http://localhost:5173'];
+app.use(cors({
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 
 // * db connect
 mongoose
