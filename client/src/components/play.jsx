@@ -11,6 +11,8 @@ const play = () => {
   const { Email, setEmail } = useContext(UserContext);
   const [isSet, setIsSet] = useState(false); 
 
+  console.log('Im hereeeee!!!'); 
+
   const handlePlayClick = () => {
     navigate("/quiz");
   };

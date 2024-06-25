@@ -33,12 +33,17 @@ router.get(
 );
 
 router.get("/user", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json({
-      email: req.user.email,
-    });
-  } else {
-    res.sendStatus(401).send("Not Authenticated");
+  try{
+    if (req.isAuthenticated()) {
+      res.json({
+        email: req.user.email,
+      });
+    } else {
+      res.sendStatus(401).send("Not Authenticated");
+    }
+  }
+  catch(err){
+    res.send(err); 
   }
 });
 
