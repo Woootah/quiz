@@ -2,39 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import Footer from "./footer";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
-import axios from "axios" ;
-import { server } from "../config.js"; 
 
 const play = () => {
-  const [loggedInEmail, setLoggedInEmail] = useState("");
   const navigate = useNavigate();
-  const { Email, setEmail } = useContext(UserContext);
-  const [isSet, setIsSet] = useState(false); 
-
-  console.log('Im hereeeee!!!'); 
+  const { username } = useContext(UserContext);
+  
+  useEffect(() => {
+    if(!username){
+      navigate('/')
+    }
+  }, [])
+  console.log(username); 
 
   const handlePlayClick = () => {
     navigate("/quiz");
   };
-  
-  useEffect(() => {
-    axios
-      .get(`${server}/user`, {withCredentials: true})
-      .then((res) => {
-        setEmail(res.data.email);
-        console.log(res.data.email); 
-        setIsSet(true); 
-
-        if(!res.data.email){
-          console.log('Email is empty!'); 
-          navigate('/')
-        }
-      })
-      .catch((err) => {
-        console.log(err); 
-        navigate('/'); 
-      });
-  }, []);
 
 
   return (

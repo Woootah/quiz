@@ -8,13 +8,13 @@ import { server } from "../config.js";
 const game = () => {
   const [questions, setQuestions] = useState([]);
   const [questionIdx, setQuestionIdx] = useState(0); 
-  const { Email, setFinalScore} = useContext(UserContext);
+  const { username, setFinalScore} = useContext(UserContext);
   const navigate = useNavigate();
   const [inputAnswer, setInputAnswer] = useState(""); 
   const [score, setScore] = useState(0);
   
   useEffect(() => {
-    if(!Email){
+    if(!username){
       navigate('/'); 
     }
   }, [])

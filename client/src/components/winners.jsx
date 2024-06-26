@@ -41,7 +41,7 @@ const winners = () => {
           <div className="h-[65vh] w-full mt-4 overflow-auto overflow-x-hidden">
             {winnerList.map((winner) => (
                 <div key={winner._id} className="font-secondary border-2 border-cred bg-cred text-cwhite py-3 px-4 text-center text-sm cursor-pointer mb-4 mx-4 easing hover:bg-cwhite hover:text-cred">
-                    <p className="font-semibold">{winner.email}</p>
+                    <p className="font-semibold mb-2 uppercase">{winner.username}</p>
                     <p className="text-[10px]">{formatDate(winner.dateWon)}</p>
                 </div>
             ))}

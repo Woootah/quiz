@@ -6,19 +6,19 @@ import axios from "axios";
 import { server } from "../config.js"; 
 
 const result = () => {
-  const { finalScore, Email } = useContext(UserContext);
+  const { finalScore, username, setUsername} = useContext(UserContext);
   const navigate = useNavigate();
   const hasSubmitted = useRef(false);
 
   useEffect(() => {
-    if (!Email) {
+    if (!username) {
       navigate("/");
     }
   }, []);
 
   const handleBounce = () => {
     if (finalScore === 5 && !hasSubmitted.current) {
-      const user = { email: Email, score: finalScore };
+      const user = { username: username, score: finalScore };
       hasSubmitted.current = true; 
       axios
       .post(`${server}/winner`, user)
@@ -30,7 +30,8 @@ const result = () => {
           hasSubmitted.current = false; 
         });
     }
-    window.location.href = `${server}/logout`;
+    setUsername(''); 
+    navigate('/'); 
   };
 
   return (

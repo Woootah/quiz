@@ -11,50 +11,20 @@ router.get("/", (req, res) => {
   res.status(200).send("Hello ChizQuizzer");
 });
 
-// Auth
-router.get("/auth/google", passport.authenticate("google"));
-
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google"),
-  (req, res) => {
-    if (req.authInfo && req.authInfo.message == "User Exist") {
-      return res.redirect(
-        `${process.env.CLIENT_DOMAIN}/?message=You can only play once per email`
-      );
-    }
-
-    if (req.isAuthenticated()) {
-      console.log(req.session);
-      console.log(req.user);
-      res.redirect(`${process.env.CLIENT_DOMAIN}/play`);
-    }
-  }
-);
-
-router.get("/user", (req, res) => {
-  try{
-    if (req.isAuthenticated()) {
-      res.json({
-        email: req.user.email,
-      });
-    } else {
-      res.sendStatus(401).send("Not Authenticated");
-    }
-  }
-  catch(err){
-    res.send(err); 
-  }
-});
-
-router.get("/logout", (req, res) => {
-  req.logout((err) => {
-    if (err) {
-      res.status(500).send({ message: "Logout Failed", error: err });
-    }
-  });
-  res.redirect(process.env.CLIENT_DOMAIN); 
-});
+// router.get("/user", (req, res) => {
+//   try{
+//     if (req.isAuthenticated()) {
+//       res.json({
+//         email: req.user.email,
+//       });
+//     } else {
+//       res.sendStatus(401).send("Not Authenticated");
+//     }
+//   }
+//   catch(err){
+//     res.send(err); 
+//   }
+// });
 
 // * create questions
 router.post("/create", async (req, res) => {
@@ -97,18 +67,11 @@ router.get("/questions", async (req, res) => {
 });
 
 router.post("/winner", async (req, res) => {
-  try {
-    console.log(req.body);  
-    console.log(req.score);  
-    const { email, score } = req.body;
-
-    const existingWinner = await Winner.findOne({ email });
-    if (existingWinner) {
-      return res.status(400).send({ message: "Winner already recorded" });
-    }
+  try {  
+    const { username, score } = req.body;
 
     const newWinner = new Winner({
-      email,
+      username,
       score,
     });
 
@@ -116,7 +79,7 @@ router.post("/winner", async (req, res) => {
     res.status(200).send(winner);
   } catch (error) {
     console.log(error); 
-    res.status(500).send({ message: "Recording winner failed" });
+    res.status(500).send({ message: "Recording of winner failed" });
   }
 });
 

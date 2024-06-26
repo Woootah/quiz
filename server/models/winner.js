@@ -1,7 +1,7 @@
 import mongoose from "mongoose"; 
 
 const winnerSchema = new mongoose.Schema({
-    email: { 
+    username: { 
         type: String
     }, 
     dateWon: {

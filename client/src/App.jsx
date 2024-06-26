@@ -10,12 +10,12 @@ import React, { useState } from "react";
 export const UserContext = React.createContext();
 
 const App = () => {
-  const [Email, setEmail] = useState(''); 
+  const [username, setUsername] = useState(''); 
   const [finalScore, setFinalScore] = useState(0); 
 
   return (
     <div>
-      <UserContext.Provider value={{Email, setEmail, finalScore, setFinalScore}}>
+      <UserContext.Provider value={{username, setUsername, finalScore, setFinalScore}}>
         <Routes>
           <Route path="/" element={<Quiz />} />
           <Route path="/play" element={<Play />} />
