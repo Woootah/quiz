@@ -90,7 +90,7 @@ const game = () => {
           ) : (
             <div className="w-[60vw] grid grid-cols-2 gap-6 mt-16 font-secondary text-cwhite">
               {questions[questionIdx].choices && questions[questionIdx].choices.map((choice, index) => (
-                <button key={index} className="text-xs py-3 easing bg-cred border border-cred hover:bg-transparent hover:text-cred" onClick={(e) => handleNext(e)}>{choice}</button>
+                <button key={index} className="text-sm py-3 easing bg-cred border border-cred hover:bg-transparent hover:text-cred" onClick={(e) => handleNext(e)}>{choice}</button>
               ))}
             </div>
           )}
