@@ -1,7 +1,6 @@
 import express from "express";
 import { Question } from "../models/question.js";
 import { Winner } from "../models/winner.js";
-import passport from "passport";
 import dotenv from "dotenv";
 
 dotenv.config();

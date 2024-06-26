@@ -11,13 +11,7 @@ dotenv.config();
 
 // * middlewares
 app.use(express.json());
-app.use(
-  cors({
-    origin: process.env.CLIENT_DOMAIN,
-    credentials: true,
-    methods: ['GET', 'POST']
-  })
-);
+app.use(cors());
 
 // * db connect
 mongoose
