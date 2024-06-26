@@ -11,21 +11,6 @@ router.get("/", (req, res) => {
   res.status(200).send("Hello ChizQuizzer");
 });
 
-// router.get("/user", (req, res) => {
-//   try{
-//     if (req.isAuthenticated()) {
-//       res.json({
-//         email: req.user.email,
-//       });
-//     } else {
-//       res.sendStatus(401).send("Not Authenticated");
-//     }
-//   }
-//   catch(err){
-//     res.send(err); 
-//   }
-// });
-
 // * create questions
 router.post("/create", async (req, res) => {
   try {
