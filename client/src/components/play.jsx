@@ -25,7 +25,7 @@ const play = () => {
         <span>Chiz</span>
         <span>Quiz</span>
       </h1>
-      <p className="text-sm font-secondary mt-5 w-[48vw] text-gray-700 cursor-pointer">
+      <p className="text-sm font-secondary mt-5 w-[60vw] text-gray-700 cursor-pointer">
         Discover, Learn, Conquer, &amp; Win Prizes!
       </p>
       <div
